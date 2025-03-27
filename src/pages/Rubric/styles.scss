@@ -1,0 +1,123 @@
+/* Container for rubric */
+.rubric-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Styling for the input and buttons */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-section input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.input-section .btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+td {
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: #e9ecef;
+}
+
+td.selected {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+/* Student scores section */
+.col-md-2 {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 20px;
+    width: 250px;
+}
+
+h4 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.student-entry {
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.student-entry a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.student-entry a:hover {
+    text-decoration: underline;
+}

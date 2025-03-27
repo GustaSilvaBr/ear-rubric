@@ -4,7 +4,7 @@ import { Rubric } from './pages/Rubric/index';
 import { RubricList } from './pages/RubricList/index';
 import { Login } from './pages/Login/index';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import './global.scss';
 const router = createBrowserRouter([
   {
     path: "/",
