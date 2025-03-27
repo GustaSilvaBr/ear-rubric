@@ -1,4 +1,21 @@
-/* Container for rubric */
+/* General Styling */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h4 {
+    margin-bottom: 16px;
+    color: #333;
+}
+
+
+
 .rubric-container {
     display: flex;
     flex-direction: column;
@@ -12,13 +29,15 @@
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    width: 100%; /* Full width for input section */
 }
 
 .input-section input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 250px;
+    width: 400px; /* Bigger input */
+    flex-grow: 1; /* Allow input to grow */
 }
 
 .input-section .btn {
@@ -58,6 +77,24 @@
     background-color: #e0a800;
 }
 
+/* New Styles for Layout  */
+.rubric-content {
+    display: flex;
+    width: 100%; /* Take full width */
+    justify-content: space-between; /* Distribute space evenly */
+}
+
+.rubric-table-container {
+    flex: 0 0 70%; /* 70% width for the table  */
+}
+
+.student-scores-container {
+    flex: 0 0 28%; /* 28% width for student scores */
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
 /* Table styling */
 table {
     width: 100%;
@@ -65,7 +102,8 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: center;

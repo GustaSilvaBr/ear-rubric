@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./styles.scss"; 
+import "./styles.scss";
 
 interface Student {
     name: string;
@@ -53,8 +53,8 @@ export function Rubric() {
 
     return (
         <div className="rubric-container">
-            <div className="row">
-                <div className="col-md-10">
+            <div className="rubric-content">
+                <div className="rubric-table-container">
                     <div className="input-section">
                         <input
                             type="text"
@@ -66,9 +66,7 @@ export function Rubric() {
                         <button className="btn btn-danger" onClick={calculateScore}>
                             Add Student
                         </button>
-                        <button className="btn btn-primary">Export CSV</button>
                     </div>
-
                     <table className="table table-bordered">
                         <thead>
                             <tr>
@@ -107,7 +105,7 @@ export function Rubric() {
                         </tbody>
                     </table>
                 </div>
-                <div className="col-md-2">
+                <div className="student-scores-container">
                     <h4>Student Scores</h4>
                     <button className="btn btn-warning" onClick={clearAll}>
                         Clear All
