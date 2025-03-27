@@ -85,7 +85,7 @@ export function Rubric() {
                                 { category: "Prontidão", scores: ["Always prepared", "Almost always", "Often unprepared", "Rarely prepared"] },
                             ].map((row, index) => (
                                 <tr key={index}>
-                                    <td>{row.category}</td>
+                                    <td className="category-td">{row.category}</td>
                                     {row.scores.map((score, i) => (
                                         <td
                                             key={i}
