@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ICategory, ICriteria, IRubric, IRubricItem } from '../../interfaces/IRubric'
 import "./styles.scss";
 
 interface Student {
@@ -10,6 +11,35 @@ interface Student {
 export function Rubric() {
     const [studentName, setStudentName] = useState<string>("");
     const [studentScores, setStudentScores] = useState<Student[]>([]);
+    const [rubric, setRubric] = useState<IRubric>();
+
+    useEffect(() => {
+        if (!rubric) {
+            const deafult_categories = [{ "name": "Conceito" }, { "name": "Atitude" }];
+            const default_criterias = [{
+                "name": "Excede as expectativas (25)",
+                score: 25,
+            }, {
+                "name": "Excede as expectativas (20)",
+                score: 20,
+            }]
+            const items: IRubricItem[] = []
+            for (let i = 0; i < deafult_categories.length; i++) {
+                for (let j = 0; j < default_criterias.length; j++) {
+                    items.push({
+                        categoryIndex: i,
+                        criteriaIndex: j,
+                        description: "Type something here..."
+                    })
+                }
+            }
+            setRubric({
+                categories: deafult_categories,
+                criterias: default_criterias,
+                items: items
+            })
+        }
+    }, []);
 
     useEffect(() => {
         localStorage.setItem("studentScores", JSON.stringify(studentScores));
@@ -71,35 +101,35 @@ export function Rubric() {
                         <thead>
                             <tr>
                                 <th>CATEGORY</th>
-                                <th>Excede as expectativas (25)</th>
-                                <th>Atende as expectativas (20)</th>
-                                <th>Progredindo (15)</th>
-                                <th>Progresso limitado (10)</th>
+                                {
+                                    rubric?.criterias.map((item) => {
+                                        return (<th>{item.name}</th>)
+                                    })
+                                }
                             </tr>
                         </thead>
                         <tbody>
-                            {[
-                                { category: "Conceito", scores: ["Deep understanding", "Good understanding", "Partial understanding", "No understanding"] },
-                                { category: "Atitude", scores: ["Exemplary behavior", "Good interaction", "Some difficulties", "Inadequate attitude"] },
-                                { category: "Procedimento", scores: ["High precision", "Good execution", "Needs support", "No engagement"] },
-                                { category: "Prontidão", scores: ["Always prepared", "Almost always", "Often unprepared", "Rarely prepared"] },
-                            ].map((row, index) => (
+                            {rubric?.categories?.map((category, index) => (
                                 <tr key={index}>
-                                    <td className="category-td">{row.category}</td>
-                                    {row.scores.map((score, i) => (
-                                        <td
-                                            key={i}
-                                            data-points={(25 - i * 5)}
-                                            onClick={(e: React.MouseEvent<HTMLTableCellElement>) => {
-                                                e.currentTarget.parentElement
-                                                    ?.querySelectorAll("td")
-                                                    .forEach((cell) => cell.classList.remove("selected"));
-                                                e.currentTarget.classList.add("selected");
-                                            }}
-                                        >
-                                            {score}
-                                        </td>
-                                    ))}
+                                    <td className="category-td">{category.name}</td>
+                                    {rubric.items.map((item, i) => {
+                                        if (item.categoryIndex == index) {
+                                            return (
+                                                <td
+                                                    key={i}
+                                                    data-points={(rubric.criterias[item.criteriaIndex].score)}
+                                                    onClick={(e: React.MouseEvent<HTMLTableCellElement>) => {
+                                                        e.currentTarget.parentElement
+                                                            ?.querySelectorAll("td")
+                                                            .forEach((cell) => cell.classList.remove("selected"));
+                                                        e.currentTarget.classList.add("selected");
+                                                    }}
+                                                >
+                                                    {item.description}
+                                                </td>
+                                            )
+                                        }
+                                    })}
                                 </tr>
                             ))}
                         </tbody>
